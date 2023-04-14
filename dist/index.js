@@ -88,6 +88,13 @@ files.split(" ").forEach(fileName => {
   console.log(`  - ${fileName}`);
 });
 
+	
+zip.getEntries().forEach((entry) => {
+  //entry.entryName = iconv.decode(entry.rawEntryName, 'gbk')
+  entry.header.flags |= 0x0800
+})
+
+	
 const destPath = path.join(process.env.GITHUB_WORKSPACE, dest);
 
 zip.writeZip(destPath);
