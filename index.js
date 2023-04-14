@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const AdmZip = require("adm-zip");
+const iconv = require('iconv-lite');
 const core = require("@actions/core");
 
 const files = core.getInput("files");
@@ -30,12 +31,13 @@ files.split(" ").forEach(fileName => {
     zip.addLocalFile(filePath, !recursive && zipDir);
   }
 
-  zip.getEntries().forEach((entry) => {
-    entry.header.flags |= 0x0800
-  })
-
   console.log(`  - ${fileName}`);
 });
+
+zip.getEntries().forEach((entry) => {
+  entry.entryName = iconv.decode(entry.rawEntryName, 'gbk')
+  entry.header.flags |= 0x0800
+})
 
 const destPath = path.join(process.env.GITHUB_WORKSPACE, dest);
 
