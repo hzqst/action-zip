@@ -35,7 +35,7 @@ files.split(" ").forEach(fileName => {
 });
 
 zip.getEntries().forEach((entry) => {
-  entry.entryName = iconv.decode(entry.rawEntryName, 'gbk')
+  //entry.entryName = iconv.decode(entry.rawEntryName, 'gbk')
   entry.header.flags |= 0x0800
 })
 

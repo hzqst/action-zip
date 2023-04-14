@@ -21,7 +21,7 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^2.1.1",
-    "adm-zip": "^0.4.14",
+    "adm-zip": "^0.5.10",
     "zip-local": "^0.3.4",
     "iconv-lite": "^0.6.3"
   },
