@@ -30,6 +30,10 @@ files.split(" ").forEach(fileName => {
     zip.addLocalFile(filePath, !recursive && zipDir);
   }
 
+  zip.getEntries().forEach((entry) => {
+    entry.header.flags |= 0x0800
+  })
+
   console.log(`  - ${fileName}`);
 });
 
